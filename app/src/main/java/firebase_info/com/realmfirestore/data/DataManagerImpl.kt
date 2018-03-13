@@ -78,8 +78,8 @@ open class DataManagerImpl @Inject constructor(
                 }
 
                 override fun onNext(t: List<User>?) {
-//                    dbHelperImpl.saveUsers(t)
-                    t?.forEach { println("Kon123" + it) }
+                    dbHelperImpl.saveUsers(t)
+                    handler.onSuccess(t as List<User>)
                 }
 
                 override fun onError(e: Throwable?) {

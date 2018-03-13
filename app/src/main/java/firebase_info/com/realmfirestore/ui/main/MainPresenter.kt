@@ -52,11 +52,11 @@ open class MainPresenter @Inject constructor(private val dataManager: DataManage
         compositeDisposable.add(
             dataManager.syncUsers(object : AppCallback<List<User>> {
                 override fun onSuccess(response: List<User>) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    response.forEach { mvpView?.display(it) }
                 }
 
                 override fun onFailure(message: String?, e: Throwable) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    mvpView?.showError(message)
                 }
 
             })

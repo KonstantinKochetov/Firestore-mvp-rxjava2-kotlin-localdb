@@ -26,4 +26,8 @@ open class DbHelperImpl @Inject constructor(val realm: Realm) : DbHelper {
             Flowable.empty()
         }
     }
+
+    override fun saveUsers(t: List<User>?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }
