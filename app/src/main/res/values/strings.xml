@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">RealmFirestore</string>
+    <string name="default_user_title">New User</string>
+</resources>

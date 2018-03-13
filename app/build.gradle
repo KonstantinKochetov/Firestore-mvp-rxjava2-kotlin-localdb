@@ -1,0 +1,117 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'realm-android'
+
+android {
+
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        applicationId "firebase_info.com.realmfirestore"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode getVersionCode()
+        versionName getVersionName()
+        multiDexEnabled true
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+    }
+
+    sourceSets {
+        test.java.srcDirs += 'src/test/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+    compileOptions.incremental = false
+    lintOptions {
+        abortOnError false
+        disable 'ContentDescription'
+    }
+
+    configurations.all {
+        resolutionStrategy {
+            force "com.android.support:design:$rootProject.ext.supportLibraryVersion"
+            force "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
+            force "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
+            force "com.android.support:support-annotations:$rootProject.ext.supportLibraryVersion"
+            force "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
+            force 'com.google.code.findbugs:jsr305:3.0.0'
+        }
+    }
+}
+kapt {
+    generateStubs = true
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation("com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion") {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+    }
+
+    implementation("com.android.support:design:$rootProject.ext.supportLibraryVersion") {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.android.support', module: 'appcompat-v4'
+    }
+
+    implementation "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintLayout"
+
+    // kotlin dependencies
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.15"
+    //anko
+    implementation "org.jetbrains.anko:anko-commons:$anko_version"
+    implementation "org.jetbrains.anko:anko-sdk15:$anko_version"
+    // dagger
+    implementation "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
+    kaptAndroidTest "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
+    compileOnly "org.glassfish:javax.annotation:$rootProject.ext.javaxVersion"
+
+    testImplementation "junit:junit:$rootProject.ext.junitVersion"
+    testImplementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+
+    // Testing dependencies
+    androidTestImplementation "com.android.support:support-annotations:$rootProject.ext.supportLibraryVersion"
+    androidTestImplementation "com.android.support.test.uiautomator:uiautomator-v18:$rootProject.ext.uiAutomatorVersion"
+    // Android Testing Support Library's runner and rules
+    androidTestImplementation "com.android.support.test:runner:$rootProject.ext.supportTestLibraryVersion"
+    androidTestImplementation "com.android.support.test:rules:$rootProject.ext.supportTestLibraryVersion"
+
+    // RxJava & RxAndroid
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxJavaVersion"
+//    implementation "io.reactivex:rxandroid:$rootProject.ext.rxAndroidVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxAndroidVersion"
+    implementation "com.jakewharton.rxbinding:rxbinding:$rootProject.ext.rxBindingVersion"
+    implementation "com.daimajia.swipelayout:library:1.2.0@aar"
+
+    // butterknife
+    implementation 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT'
+
+    // firebase
+    compile "com.google.firebase:firebase-firestore:$rootProject.ext.firestoreVersion"
+
+
+}
+
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
+}
+
+tasks.matching {
+    doLast {
+        it instanceof Test
+    }.all {
+        testLogging.events = ["failed", "passed", "skipped"]
+    }
+}
+
+apply plugin: 'com.google.gms.google-services'
+
