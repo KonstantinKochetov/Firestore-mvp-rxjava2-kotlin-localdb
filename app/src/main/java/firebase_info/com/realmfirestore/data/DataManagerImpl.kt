@@ -2,7 +2,9 @@ package firebase_info.com.realmfirestore.data
 
 import firebase_info.com.realmfirestore.data.local.DbHelperImpl
 import firebase_info.com.realmfirestore.data.network.ApiHelperImpl
+import firebase_info.com.realmfirestore.data.room.UserEntity
 import firebase_info.com.realmfirestore.domain.User
+import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -30,9 +32,14 @@ open class DataManagerImpl @Inject constructor(
                     // do nothing
                 }
 
+                // FIXME
                 override fun onNext(t: User?) {
                     handler.onSuccess(t as User)
-                    dbHelperImpl.insertUser(t)
+                    Completable.fromAction({
+                        dbHelperImpl.insertUser(t)
+                    })
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
                 }
 
                 override fun onError(e: Throwable?) {
@@ -92,7 +99,7 @@ open class DataManagerImpl @Inject constructor(
     }
 
     private fun createTestUserWithSocialList(): User {
-        val user = User("test", "test2")
+        val user = User()
         return user
     }
 
