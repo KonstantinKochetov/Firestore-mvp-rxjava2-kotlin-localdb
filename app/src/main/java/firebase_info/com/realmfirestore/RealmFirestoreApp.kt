@@ -6,7 +6,6 @@ import com.google.firebase.FirebaseApp
 import firebase_info.com.realmfirestore.dagger.components.AppComponent
 import firebase_info.com.realmfirestore.dagger.components.DaggerAppComponent
 import firebase_info.com.realmfirestore.dagger.modules.ContextModule
-import io.realm.Realm
 import javax.inject.Inject
 
 /**
@@ -36,9 +35,6 @@ class RealmFirestoreApp : Application() {
         FirebaseApp.initializeApp(context)
         // TODO disable firebase persistence
 
-        // Set Up Realm
-        Realm.init(this)
-    
     }
     
 }

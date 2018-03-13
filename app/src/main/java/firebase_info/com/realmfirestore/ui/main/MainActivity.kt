@@ -5,7 +5,7 @@ import android.widget.TextView
 import firebase_info.com.realmfirestore.R
 import firebase_info.com.realmfirestore.RealmFirestoreApp
 import firebase_info.com.realmfirestore.base.BaseActivity
-import firebase_info.com.realmfirestore.data.model.realm.User
+import firebase_info.com.realmfirestore.domain.User
 import kotterknife.bindView
 import org.jetbrains.anko.toast
 import javax.inject.Inject
@@ -32,7 +32,7 @@ class MainActivity : BaseActivity(), MainContract.View {
     }
 
     override fun display(user: User) {
-        dataTextView.text = user.name
+        dataTextView.text = user.firstName
     }
 
     override fun showError(message: String?) {

@@ -1,6 +1,6 @@
 package firebase_info.com.realmfirestore.data.network
 
-import firebase_info.com.realmfirestore.data.model.realm.User
+import firebase_info.com.realmfirestore.domain.User
 import io.reactivex.Flowable
 
 /**

@@ -3,7 +3,7 @@ package firebase_info.com.realmfirestore.ui.main
 import firebase_info.com.realmfirestore.base.BasePresenter
 import firebase_info.com.realmfirestore.data.AppCallback
 import firebase_info.com.realmfirestore.data.DataManagerImpl
-import firebase_info.com.realmfirestore.data.model.realm.User
+import firebase_info.com.realmfirestore.domain.User
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 import javax.inject.Singleton

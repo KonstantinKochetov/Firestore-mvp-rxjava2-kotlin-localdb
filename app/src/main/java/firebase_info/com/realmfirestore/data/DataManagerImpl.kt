@@ -1,9 +1,8 @@
 package firebase_info.com.realmfirestore.data
 
 import firebase_info.com.realmfirestore.data.local.DbHelperImpl
-import firebase_info.com.realmfirestore.data.model.realm.Social
-import firebase_info.com.realmfirestore.data.model.realm.User
 import firebase_info.com.realmfirestore.data.network.ApiHelperImpl
+import firebase_info.com.realmfirestore.domain.User
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -33,7 +32,7 @@ open class DataManagerImpl @Inject constructor(
 
                 override fun onNext(t: User?) {
                     handler.onSuccess(t as User)
-                    dbHelperImpl.insertOrUpdateUser(t)
+                    dbHelperImpl.insertUser(t)
                 }
 
                 override fun onError(e: Throwable?) {
@@ -93,13 +92,7 @@ open class DataManagerImpl @Inject constructor(
     }
 
     private fun createTestUserWithSocialList(): User {
-        val social = Social()
-        val social2 = Social()
-        val socialList = ArrayList<Social>()
-        socialList.add(social)
-        socialList.add(social2)
-        val user = User()
-        user.social = socialList
+        val user = User("test", "test2")
         return user
     }
 

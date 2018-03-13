@@ -2,7 +2,7 @@ package firebase_info.com.realmfirestore.data.network
 
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
-import firebase_info.com.realmfirestore.data.model.realm.User
+import firebase_info.com.realmfirestore.domain.User
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.FlowableEmitter

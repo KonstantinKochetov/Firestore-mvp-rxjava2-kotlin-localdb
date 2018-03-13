@@ -1,9 +1,9 @@
 package firebase_info.com.realmfirestore.data.local
 
-import firebase_info.com.realmfirestore.data.model.realm.RealmUser
-import firebase_info.com.realmfirestore.data.model.realm.User
+import firebase_info.com.realmfirestore.data.room.AppDatabase
+import firebase_info.com.realmfirestore.data.room.UserEntity
+import firebase_info.com.realmfirestore.domain.User
 import io.reactivex.Flowable
-import io.realm.Realm
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -11,23 +11,22 @@ import javax.inject.Singleton
  * Created by konstantinkochetov on 11.03.18.
  */
 @Singleton
-open class DbHelperImpl @Inject constructor(val realm: Realm) : DbHelper {
-    override fun insertOrUpdateUser(user: User) {
-        realm.executeTransaction {
-            realm.copyToRealmOrUpdate(user.transformForRealm())
-        }
+open class DbHelperImpl @Inject constructor(
+    val database: AppDatabase
+) : DbHelper {
+
+    override fun insertUser(user: User) {
+        database.userDao().insertUser(UserEntity(0, user.firstName, user.lastName))
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getUserFlowable() : Flowable<User> {
-        val user = realm.where(RealmUser::class.java).equalTo("userID", "testUserId").findFirst()
-        return if (user != null) {
-            Flowable.just(user.transformFromRealm())
-        } else {
-            Flowable.empty()
-        }
+    override fun getUserFlowable(): Flowable<User> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun saveUsers(t: List<User>?) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
+
 }

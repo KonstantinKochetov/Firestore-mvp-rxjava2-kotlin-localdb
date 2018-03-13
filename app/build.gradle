@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'realm-android'
 
 android {
 
@@ -85,10 +85,14 @@ dependencies {
 
     // RxJava & RxAndroid
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxJavaVersion"
-//    implementation "io.reactivex:rxandroid:$rootProject.ext.rxAndroidVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxAndroidVersion"
     implementation "com.jakewharton.rxbinding:rxbinding:$rootProject.ext.rxBindingVersion"
     implementation "com.daimajia.swipelayout:library:1.2.0@aar"
+
+    // Room
+    compile "android.arch.persistence.room:runtime:$rootProject.ext.archVersion"
+    kapt "android.arch.persistence.room:compiler:$rootProject.ext.archVersion"
+    compile "android.arch.persistence.room:rxjava2:$rootProject.ext.archVersion"
 
     // butterknife
     implementation 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT'

@@ -5,7 +5,7 @@ import firebase_info.com.realmfirestore.RealmFirestoreApp
 import firebase_info.com.realmfirestore.base.BaseActivity
 import firebase_info.com.realmfirestore.dagger.modules.ContextModule
 import firebase_info.com.realmfirestore.dagger.modules.FirebaseModule
-import firebase_info.com.realmfirestore.dagger.modules.RealmHelperModule
+import firebase_info.com.realmfirestore.dagger.modules.RoomModule
 import firebase_info.com.realmfirestore.data.DataManagerImpl
 import firebase_info.com.realmfirestore.data.local.DbHelperImpl
 import firebase_info.com.realmfirestore.data.network.ApiHelperImpl
@@ -17,7 +17,7 @@ import javax.inject.Singleton
  * Provides all Singletons used by the App
  */
 @Singleton
-@Component(modules = [(ContextModule::class), (RealmHelperModule::class), (FirebaseModule::class)])
+@Component(modules = [(ContextModule::class), (RoomModule::class), (FirebaseModule::class)])
 interface AppComponent {
 
     fun inject(application: RealmFirestoreApp)

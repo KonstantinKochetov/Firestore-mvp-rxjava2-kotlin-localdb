@@ -1,6 +1,6 @@
 package firebase_info.com.realmfirestore.ui.main
 
-import firebase_info.com.realmfirestore.data.model.realm.User
+import firebase_info.com.realmfirestore.domain.User
 import firebase_info.com.realmfirestore.mvp.MvpView
 
 /**
