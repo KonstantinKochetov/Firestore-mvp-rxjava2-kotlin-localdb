@@ -2,6 +2,7 @@ package firebase_info.com.realmfirestore.data.network
 
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
+import firebase_info.com.realmfirestore.data.room.UserEntity
 import firebase_info.com.realmfirestore.domain.User
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
@@ -17,7 +18,6 @@ open class ApiHelperImpl @Inject constructor(
     val TAG = "ApiHelperImpl"
 
     override fun uploadUser(user: User): Flowable<User> {
-
         return Flowable.create({ subscriber: FlowableEmitter<User> ->
             firestore.collection("users")
                 .add(user)

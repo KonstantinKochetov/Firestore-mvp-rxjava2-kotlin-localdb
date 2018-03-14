@@ -32,7 +32,7 @@ open class DataManagerImpl @Inject constructor(
                     // do nothing
                 }
 
-                // FIXME
+                // FIXME do db rx stuff in different private method
                 override fun onNext(t: User?) {
                     Completable.fromAction({
                         dbHelperImpl.insertUser(t as User)

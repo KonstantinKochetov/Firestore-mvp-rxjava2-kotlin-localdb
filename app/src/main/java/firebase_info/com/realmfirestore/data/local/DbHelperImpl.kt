@@ -3,10 +3,7 @@ package firebase_info.com.realmfirestore.data.local
 import firebase_info.com.realmfirestore.data.room.AppDatabase
 import firebase_info.com.realmfirestore.data.room.UserEntity
 import firebase_info.com.realmfirestore.domain.User
-import io.reactivex.Completable
 import io.reactivex.Flowable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 import javax.inject.Singleton
 
