@@ -2,9 +2,9 @@ package firebase_info.com.realmfirestore.data
 
 import firebase_info.com.realmfirestore.data.local.DbHelperImpl
 import firebase_info.com.realmfirestore.data.network.ApiHelperImpl
-import firebase_info.com.realmfirestore.data.room.UserEntity
 import firebase_info.com.realmfirestore.domain.User
 import io.reactivex.Completable
+import io.reactivex.CompletableObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -34,12 +34,25 @@ open class DataManagerImpl @Inject constructor(
 
                 // FIXME
                 override fun onNext(t: User?) {
-                    handler.onSuccess(t as User)
                     Completable.fromAction({
-                        dbHelperImpl.insertUser(t)
+                        dbHelperImpl.insertUser(t as User)
                     })
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeWith(object : CompletableObserver {
+                            override fun onComplete() {
+                                handler.onSuccess(t as User)
+//                                dispose() // TODO dispose or disposing is handled by the top caller?
+                            }
+
+                            override fun onSubscribe(d: Disposable) {
+
+                            }
+
+                            override fun onError(e: Throwable) {
+                            }
+
+                        })
                 }
 
                 override fun onError(e: Throwable?) {
