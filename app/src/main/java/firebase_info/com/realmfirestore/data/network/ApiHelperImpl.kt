@@ -2,6 +2,7 @@ package firebase_info.com.realmfirestore.data.network
 
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 import firebase_info.com.realmfirestore.data.model.realm.User
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
@@ -14,10 +15,11 @@ import javax.inject.Singleton
 open class ApiHelperImpl @Inject constructor(
     val firestore: FirebaseFirestore
 ) : ApiHelper {
+
     val TAG = "ApiHelperImpl"
+    var registration : ListenerRegistration? = null
 
     override fun uploadUser(user: User): Flowable<User> {
-
         return Flowable.create({ subscriber: FlowableEmitter<User> ->
             firestore.collection("users")
                 .add(user)
@@ -36,7 +38,7 @@ open class ApiHelperImpl @Inject constructor(
 
     }
 
-    override fun getUsersFlowable(): Flowable<List<User>> {
+    override fun getUsersFromServerWithQuery(): Flowable<List<User>> {
         return Flowable.create({ subscriber: FlowableEmitter<List<User>> ->
             firestore.collection("users")
                 .get()
@@ -54,5 +56,22 @@ open class ApiHelperImpl @Inject constructor(
                 })
         }, BackpressureStrategy.BUFFER)
 
+    }
+
+    override fun getUsersFromServerWithListener(): Flowable<List<User>> {
+        registration?.remove()
+        return Flowable.create({ subscriber: FlowableEmitter<List<User>> ->
+            registration = firestore.collection("users")
+                .addSnapshotListener { snapshots, exception ->
+                    if (exception != null) {
+                        subscriber.onError(exception)
+                    }
+                    val users = ArrayList<User>()
+                    snapshots.forEach {
+                        users.add(it.toObject(User::class.java))
+                    }
+                    subscriber.onNext(users)
+                }
+        }, BackpressureStrategy.BUFFER)
     }
 }

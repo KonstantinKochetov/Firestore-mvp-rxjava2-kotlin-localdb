@@ -18,8 +18,8 @@ open class DbHelperImpl @Inject constructor(val realm: Realm) : DbHelper {
         }
     }
 
-    override fun getUserFlowable() : Flowable<User> {
-        val user = realm.where(RealmUser::class.java).equalTo("userID", "testUserId").findFirst()
+    override fun getUserFlowable(): Flowable<User> {
+        val user = realm.where(RealmUser::class.java).findFirst()
         return if (user != null) {
             Flowable.just(user.transformFromRealm())
         } else {
@@ -27,7 +27,23 @@ open class DbHelperImpl @Inject constructor(val realm: Realm) : DbHelper {
         }
     }
 
-    override fun saveUsers(t: List<User>?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getUserListFlowable(): Flowable<List<User>> {
+        val realmResult = realm.where(RealmUser::class.java).findAll()
+        return if (realmResult != null) {
+            val list = ArrayList<User>()
+            realmResult.forEach { list.add(it.transformFromRealm()) }
+            Flowable.just(list)
+        } else {
+            Flowable.empty()
+        }
+    }
+
+    override fun syncUsersWithDatabase(users: List<User>?) {
+        realm.executeTransaction {
+            realm.where(RealmUser::class.java).findAll().deleteAllFromRealm()
+            users?.forEach {
+                realm.copyToRealmOrUpdate(it.transformForRealm())
+            }
+        }
     }
 }

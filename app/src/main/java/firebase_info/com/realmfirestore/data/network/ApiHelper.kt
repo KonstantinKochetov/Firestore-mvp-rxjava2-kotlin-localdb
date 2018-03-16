@@ -9,5 +9,6 @@ import io.reactivex.Flowable
 interface ApiHelper {
 
     fun uploadUser(user: User): Flowable<User>
-    fun getUsersFlowable(): Flowable<List<User>>
+    fun getUsersFromServerWithQuery(): Flowable<List<User>>
+    fun getUsersFromServerWithListener(): Flowable<List<User>>
 }

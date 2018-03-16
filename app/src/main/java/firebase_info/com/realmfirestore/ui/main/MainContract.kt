@@ -9,13 +9,18 @@ import firebase_info.com.realmfirestore.mvp.MvpView
 class MainContract {
     interface View : MvpView {
         fun initializeViews()
-        fun display(user: User)
+        fun displayUser(user: User)
+        fun displayUserList(users: List<User>)
+        fun showSyncSuccess(message: String?)
         fun showError(message: String?)
     }
 
     interface Presenter {
         fun initializeViews()
-        fun loadData()
-        fun getData()
+        fun addUser()
+        fun getUserFromDb()
+        fun getUserListFromDb()
+        fun syncUsersWithQuery()
+        fun syncUsersWithListener()
     }
 }

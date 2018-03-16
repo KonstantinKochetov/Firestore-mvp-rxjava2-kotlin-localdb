@@ -19,11 +19,11 @@ open class MainPresenter @Inject constructor(private val dataManager: DataManage
         mvpView?.initializeViews()
     }
 
-    override fun loadData() {
+    override fun addUser() {
         compositeDisposable.add(
-            dataManager.createAndUploadUser(object : AppCallback<User> {
+            dataManager.addUser(object : AppCallback<User> {
                 override fun onSuccess(response: User) {
-                    mvpView?.display(response)
+                    mvpView?.displayUser(response)
 
                 }
 
@@ -34,11 +34,11 @@ open class MainPresenter @Inject constructor(private val dataManager: DataManage
         )
     }
 
-    override fun getData() {
+    override fun getUserFromDb() {
         compositeDisposable.add(
             dataManager.getUserFromDatabase(object : AppCallback<User> {
                 override fun onSuccess(response: User) {
-                    mvpView?.display(response)
+                    mvpView?.displayUser(response)
                 }
 
                 override fun onFailure(message: String?, e: Throwable) {
@@ -48,11 +48,41 @@ open class MainPresenter @Inject constructor(private val dataManager: DataManage
         )
     }
 
-    fun sync() {
+    override fun getUserListFromDb() {
         compositeDisposable.add(
-            dataManager.syncUsers(object : AppCallback<List<User>> {
+            dataManager.getUserListFromDatabase(object : AppCallback<List<User>> {
                 override fun onSuccess(response: List<User>) {
-                    response.forEach { mvpView?.display(it) }
+                    mvpView?.displayUserList(response)
+                }
+
+                override fun onFailure(message: String?, e: Throwable) {
+                    mvpView?.showError(message)
+                }
+
+            })
+        )
+    }
+
+    override fun syncUsersWithQuery() {
+        compositeDisposable.add(
+            dataManager.syncUsersWithQuery(object : AppCallback<List<User>> {
+                override fun onSuccess(response: List<User>) {
+                    mvpView?.displayUserList(response)
+                }
+
+                override fun onFailure(message: String?, e: Throwable) {
+                    mvpView?.showError(message)
+                }
+
+            })
+        )
+    }
+
+    override fun syncUsersWithListener() {
+        compositeDisposable.add(
+            dataManager.syncUsersWithListener(object : AppCallback<List<User>> {
+                override fun onSuccess(response: List<User>) {
+                    mvpView?.displayUserList(response)
                 }
 
                 override fun onFailure(message: String?, e: Throwable) {

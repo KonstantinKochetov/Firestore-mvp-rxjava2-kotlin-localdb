@@ -9,22 +9,24 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subscribers.DisposableSubscriber
 import java.lang.Exception
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
  * Created by konstantinkochetov on 11.03.18.
  */
+
 @Singleton
 open class DataManagerImpl @Inject constructor(
+
     private val apiHelper: ApiHelperImpl,
     private val dbHelperImpl: DbHelperImpl
 ) : DataManager {
-    override fun createAndUploadUser(handler: AppCallback<User>): Disposable {
+    override fun addUser(handler: AppCallback<User>): Disposable {
         return apiHelper.uploadUser(
             createTestUserWithSocialList()
         )
-            .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : DisposableSubscriber<User>() {
                 override fun onComplete() {
@@ -45,10 +47,8 @@ open class DataManagerImpl @Inject constructor(
             })
     }
 
-
     override fun getUserFromDatabase(handler: AppCallback<User>): Disposable {
         return dbHelperImpl.getUserFlowable()
-            .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : DisposableSubscriber<User>() {
                 override fun onComplete() {
@@ -68,9 +68,8 @@ open class DataManagerImpl @Inject constructor(
             })
     }
 
-    override fun syncUsers(handler: AppCallback<List<User>>): Disposable {
-        return apiHelper.getUsersFlowable()
-            .subscribeOn(Schedulers.io())
+    override fun getUserListFromDatabase(handler: AppCallback<List<User>>): Disposable {
+        return dbHelperImpl.getUserListFlowable()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : DisposableSubscriber<List<User>>() {
                 override fun onComplete() {
@@ -78,8 +77,30 @@ open class DataManagerImpl @Inject constructor(
                 }
 
                 override fun onNext(t: List<User>?) {
-                    dbHelperImpl.saveUsers(t)
                     handler.onSuccess(t as List<User>)
+                }
+
+                override fun onError(e: Throwable?) {
+                    if (e is Exception) {
+                        handler.onFailure(e.message, e)
+                    }
+                }
+
+            })
+    }
+
+
+    override fun syncUsersWithQuery(handler: AppCallback<List<User>>): Disposable {
+        return apiHelper.getUsersFromServerWithQuery()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : DisposableSubscriber<List<User>>() {
+                override fun onComplete() {
+                    // do nothing
+                }
+
+                override fun onNext(t: List<User>?) {
+                    handler.onSuccess(t as List<User>)
+                    dbHelperImpl.syncUsersWithDatabase(t)
                 }
 
                 override fun onError(e: Throwable?) {
@@ -92,13 +113,39 @@ open class DataManagerImpl @Inject constructor(
 
     }
 
+    override fun syncUsersWithListener(handler: AppCallback<List<User>>): Disposable {
+        return apiHelper.getUsersFromServerWithListener()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : DisposableSubscriber<List<User>>() {
+                override fun onComplete() {
+                    // do nothing
+                }
+
+                override fun onNext(t: List<User>?) {
+                    handler.onSuccess(t as List<User>)
+                    dbHelperImpl.syncUsersWithDatabase(t)
+                }
+
+                override fun onError(e: Throwable?) {
+                    if (e is Exception) {
+                        handler.onFailure(e.message, e)
+                    }
+                }
+
+            })
+
+    }
+
+    // test method
     private fun createTestUserWithSocialList(): User {
-        val social = Social()
-        val social2 = Social()
+        val social = Social(UUID.randomUUID().toString())
+        val social2 = Social(UUID.randomUUID().toString())
         val socialList = ArrayList<Social>()
         socialList.add(social)
         socialList.add(social2)
-        val user = User()
+        val user = User(
+            UUID.randomUUID().toString()
+        )
         user.social = socialList
         return user
     }

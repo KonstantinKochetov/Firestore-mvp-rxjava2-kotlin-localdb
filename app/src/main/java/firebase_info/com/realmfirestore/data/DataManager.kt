@@ -9,9 +9,9 @@ import rx.Subscription
  */
 interface DataManager {
 
-    fun createAndUploadUser(handler: AppCallback<User>): Disposable
-
+    fun addUser(handler: AppCallback<User>): Disposable
     fun getUserFromDatabase(handler: AppCallback<User>): Disposable
-
-    fun syncUsers(handler: AppCallback<List<User>>): Disposable
+    fun syncUsersWithQuery(handler: AppCallback<List<User>>): Disposable
+    fun getUserListFromDatabase(handler: AppCallback<List<User>>): Disposable
+    fun syncUsersWithListener(handler: AppCallback<List<User>>): Disposable
 }

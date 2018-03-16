@@ -8,34 +8,74 @@
 
     <TextView
         android:id="@+id/tv_data"
-        android:text="TEXT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:text="НАЧАЛЬНЫЙ ТЕКСТ"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.219" />
+        app:layout_constraintTop_toBottomOf="@+id/b_sync_list_listener" />
 
     <Button
-        android:id="@+id/b_set_data"
-        android:layout_width="wrap_content"
+        android:id="@+id/b_add_user_sv_db"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="Добавить данные"
-        app:layout_constraintEnd_toStartOf="@+id/b_get_data"
-        app:layout_constraintHorizontal_bias="0.366"
+        android:layout_marginTop="8dp"
+        android:text="Доб. пользователя на сервер и в БД"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="231dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/b_get_data"
-        android:layout_width="wrap_content"
+        android:id="@+id/b_get_user_db"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="Запросить данные"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Запросить пользователя из БД"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="231dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/b_add_user_sv_db" />
+
+    <Button
+        android:id="@+id/b_get_user_list_db"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Запросить список пользователей из БД"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/b_get_user_db" />
+
+    <Button
+        android:id="@+id/b_sync_list_query"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Синхронизировать БД с сервером запросом"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/b_get_user_list_db" />
+
+    <Button
+        android:id="@+id/b_sync_list_listener"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Синхронизировать БД с сервером слушателем"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/b_sync_list_query" />
 
 </android.support.constraint.ConstraintLayout>
