@@ -8,7 +8,12 @@ import io.reactivex.Flowable
  */
 interface DbHelper {
     fun insertOrUpdateUser(user: User)
-    fun getUserFlowable() : Flowable<User>
+
+    fun getUserFlowable(): Flowable<User>
+
     fun getUserListFlowable(): Flowable<List<User>>
+
     fun syncUsersWithDatabase(users: List<User>?)
+
+    fun deleteAllFromDatabase()
 }

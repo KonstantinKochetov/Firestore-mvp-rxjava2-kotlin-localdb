@@ -1,6 +1,7 @@
 package firebase_info.com.realmfirestore.ui.main
 
 import android.os.Bundle
+import android.support.annotation.StringRes
 import android.util.Log
 import android.widget.TextView
 import firebase_info.com.realmfirestore.R
@@ -20,6 +21,7 @@ class MainActivity : BaseActivity(), MainContract.View {
     private val getUserListFromDbButton: TextView by bindView(R.id.b_get_user_list_db)
     private val getSyncUsersQueryButton: TextView by bindView(R.id.b_sync_list_query)
     private val getSyncUsersListenerButton: TextView by bindView(R.id.b_sync_list_listener)
+    private val deleteButton: TextView by bindView(R.id.b_delete_all)
     private val dataTextView: TextView by bindView(R.id.tv_data)
 
     @Inject
@@ -39,29 +41,27 @@ class MainActivity : BaseActivity(), MainContract.View {
         getUserListFromDbButton.setOnClickListener({ presenter.getUserListFromDb() })
         getSyncUsersQueryButton.setOnClickListener({ presenter.syncUsersWithQuery() })
         getSyncUsersListenerButton.setOnClickListener({ presenter.syncUsersWithListener() })
+        deleteButton.setOnClickListener({ presenter.deleteAll() })
     }
 
     override fun displayUser(user: User) {
         Log.d(TAG, "display user")
-
         dataTextView.text = user.name
     }
 
     override fun displayUserList(users: List<User>) {
         Log.d(TAG, "display user list")
-
         val stringBuilder = StringBuilder()
         users.forEach {
             stringBuilder.append(" ")
             stringBuilder.append(it.name)
         }
         dataTextView.text = stringBuilder.toString()
-
     }
 
-    override fun showSyncSuccess(message: String?) {
+    override fun showMessage(@StringRes message: Int?) {
         message?.apply {
-            toast(message)
+            toast(applicationContext.getString(message))
         }
     }
 
@@ -69,6 +69,10 @@ class MainActivity : BaseActivity(), MainContract.View {
         message?.apply {
             toast(message)
         }
+    }
+
+    override fun cleanTextView() {
+        dataTextView.text = ""
     }
 
     override fun inject() {

@@ -6,7 +6,6 @@ import firebase_info.com.realmfirestore.data.model.realm.User
 import firebase_info.com.realmfirestore.data.network.ApiHelperImpl
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import io.reactivex.subscribers.DisposableSubscriber
 import java.lang.Exception
 import java.util.*
@@ -16,10 +15,8 @@ import javax.inject.Singleton
 /**
  * Created by konstantinkochetov on 11.03.18.
  */
-
 @Singleton
 open class DataManagerImpl @Inject constructor(
-
     private val apiHelper: ApiHelperImpl,
     private val dbHelperImpl: DbHelperImpl
 ) : DataManager {
@@ -89,7 +86,6 @@ open class DataManagerImpl @Inject constructor(
             })
     }
 
-
     override fun syncUsersWithQuery(handler: AppCallback<List<User>>): Disposable {
         return apiHelper.getUsersFromServerWithQuery()
             .observeOn(AndroidSchedulers.mainThread())
@@ -113,6 +109,7 @@ open class DataManagerImpl @Inject constructor(
 
     }
 
+
     override fun syncUsersWithListener(handler: AppCallback<List<User>>): Disposable {
         return apiHelper.getUsersFromServerWithListener()
             .observeOn(AndroidSchedulers.mainThread())
@@ -131,9 +128,29 @@ open class DataManagerImpl @Inject constructor(
                         handler.onFailure(e.message, e)
                     }
                 }
+            })
+    }
+
+    override fun deleteAll(handler: AppCallback<String>): Disposable {
+        return apiHelper.deleteEverythingFromServer()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : DisposableSubscriber<String>() {
+                override fun onComplete() {
+                    handler.onSuccess("")
+                    dbHelperImpl.deleteAllFromDatabase()
+                }
+
+                override fun onNext(t: String?) {
+                    // do nothing
+                }
+
+                override fun onError(e: Throwable?) {
+                    if (e is Exception) {
+                        handler.onFailure(e.message, e)
+                    }
+                }
 
             })
-
     }
 
     // test method

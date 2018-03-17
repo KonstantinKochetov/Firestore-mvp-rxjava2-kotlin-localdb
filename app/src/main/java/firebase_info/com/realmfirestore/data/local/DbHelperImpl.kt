@@ -46,4 +46,10 @@ open class DbHelperImpl @Inject constructor(val realm: Realm) : DbHelper {
             }
         }
     }
+
+    override fun deleteAllFromDatabase() {
+        realm.executeTransaction {
+            realm.deleteAll()
+        }
+    }
 }

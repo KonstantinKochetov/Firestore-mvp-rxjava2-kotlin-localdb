@@ -17,6 +17,7 @@ open class ApiHelperImpl @Inject constructor(
 ) : ApiHelper {
 
     val TAG = "ApiHelperImpl"
+
     var registration : ListenerRegistration? = null
 
     override fun uploadUser(user: User): Flowable<User> {
@@ -35,7 +36,6 @@ open class ApiHelperImpl @Inject constructor(
                     subscriber.onError(e)
                 })
         }, BackpressureStrategy.BUFFER)
-
     }
 
     override fun getUsersFromServerWithQuery(): Flowable<List<User>> {
@@ -43,7 +43,6 @@ open class ApiHelperImpl @Inject constructor(
             firestore.collection("users")
                 .get()
                 .addOnSuccessListener({ documentReference ->
-                    Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.documents)
                     val list = mutableListOf<User>()
                     documentReference.documents.map {
                         list.add(it.toObject(User::class.java))
@@ -55,7 +54,6 @@ open class ApiHelperImpl @Inject constructor(
                     subscriber.onError(e)
                 })
         }, BackpressureStrategy.BUFFER)
-
     }
 
     override fun getUsersFromServerWithListener(): Flowable<List<User>> {
@@ -74,4 +72,23 @@ open class ApiHelperImpl @Inject constructor(
                 }
         }, BackpressureStrategy.BUFFER)
     }
+
+    override fun deleteEverythingFromServer(): Flowable<String> {
+        return Flowable.create({ subscriber: FlowableEmitter<String> ->
+            firestore.collection("users")
+                .get()
+                .addOnSuccessListener({ documentReference ->
+                    documentReference.documents.map {
+                        it.reference.delete()
+                    }
+                    subscriber.onComplete()
+                })
+                .addOnFailureListener({ e ->
+                    Log.w(TAG, "Error adding document", e)
+                    subscriber.onError(e)
+                })
+        }, BackpressureStrategy.BUFFER)
+
+    }
+
 }

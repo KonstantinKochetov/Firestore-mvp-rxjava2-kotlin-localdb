@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">RealmFirestore</string>
+
+    <!--Buttons-->
     <string name="default_user_title">New User</string>
+    <string name="s_generic_text">ТЕКСТ</string>
+    <string name="s_add_user_server_and_db">Доб. пользователя на сервер и в БД</string>
+    <string name="s_get_user_db">Запросить пользователя из БД</string>
+    <string name="s_get_users_db">Запросить список пользователей из БД</string>
+    <string name="s_sync_users_query">Синхронизировать БД с сервером запросом</string>
+    <string name="s_sync_users_listener">Синхронизировать БД с сервером слушателем</string>
+    <string name="s_delete_all">Удалить все</string>
+
+    <!--Messages-->
+    <string name="s_user_added">Пользователь загружен</string>
+    <string name="s_user_extracted_db">Пользователь загружен из базы данных</string>
+    <string name="s_users_extracted_db">Пользователи загружены из базы данных</string>
+    <string name="s_sync_users_query_message">Данные синхронизированы запросом</string>
+    <string name="s_sync_users_listener_message">Данные синхронизированы слушателем</string>
+    <string name="s_everything_is_deleted">Все удалено</string>
 </resources>
