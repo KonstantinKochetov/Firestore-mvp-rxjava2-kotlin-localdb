@@ -13,6 +13,7 @@ import javax.inject.Singleton
 open class MainPresenter @Inject constructor(private val dataManager: DataManagerImpl) :
     BasePresenter<MainContract.View>(),
     MainContract.Presenter {
+
     private var compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     override fun initializeViews() {

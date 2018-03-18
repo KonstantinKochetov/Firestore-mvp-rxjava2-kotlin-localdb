@@ -4,9 +4,6 @@ import firebase_info.com.realmfirestore.mvp.MvpView
 import firebase_info.com.realmfirestore.mvp.Presenter
 import javax.inject.Inject
 
-/**
- * Created by konstantinkochetov on 10.03.18.
- */
 open class BasePresenter<T : MvpView> @Inject constructor():
     Presenter<T> {
 

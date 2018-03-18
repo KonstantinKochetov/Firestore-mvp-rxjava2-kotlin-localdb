@@ -4,9 +4,6 @@ import firebase_info.com.realmfirestore.data.model.realm.User
 import io.reactivex.disposables.Disposable
 import rx.Subscription
 
-/**
- * Created by konstantinkochetov on 11.03.18.
- */
 interface DataManager {
 
     fun addUser(handler: AppCallback<User>): Disposable

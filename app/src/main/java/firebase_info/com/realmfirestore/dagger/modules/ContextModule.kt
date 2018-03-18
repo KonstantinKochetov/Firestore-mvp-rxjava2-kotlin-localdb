@@ -8,9 +8,6 @@ import dagger.Provides
 import firebase_info.com.realmfirestore.RealmFirestoreApp
 import javax.inject.Singleton
 
-/**
- * Created by konstantinkochetov on 10.03.18.
- */
 @Module
 class ContextModule(private val application: RealmFirestoreApp) {
 

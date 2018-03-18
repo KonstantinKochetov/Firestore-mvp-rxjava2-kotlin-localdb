@@ -4,9 +4,6 @@ import io.realm.RealmList
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 
-/**
- * Created by konstantinkochetov on 11.03.18.
- */
 open class RealmUser(
     @PrimaryKey var userID: String = "testUserId",
     var token: String = "testToken",

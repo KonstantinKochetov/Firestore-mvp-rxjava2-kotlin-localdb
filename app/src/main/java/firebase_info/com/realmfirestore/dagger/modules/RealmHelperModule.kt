@@ -7,9 +7,6 @@ import io.realm.Realm
 import io.realm.RealmConfiguration
 import javax.inject.Singleton
 
-/**
- * Created by konstantinkochetov on 10.03.18.
- */
 @Module
 class RealmHelperModule {
 

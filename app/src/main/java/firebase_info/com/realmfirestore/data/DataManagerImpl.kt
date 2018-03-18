@@ -12,9 +12,6 @@ import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
-/**
- * Created by konstantinkochetov on 11.03.18.
- */
 @Singleton
 open class DataManagerImpl @Inject constructor(
     private val apiHelper: ApiHelperImpl,

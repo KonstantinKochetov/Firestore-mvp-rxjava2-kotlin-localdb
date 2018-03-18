@@ -7,9 +7,6 @@ import io.realm.Realm
 import javax.inject.Inject
 import javax.inject.Singleton
 
-/**
- * Created by konstantinkochetov on 11.03.18.
- */
 @Singleton
 open class DbHelperImpl @Inject constructor(val realm: Realm) : DbHelper {
     override fun insertOrUpdateUser(user: User) {

@@ -4,9 +4,6 @@ import android.support.annotation.StringRes
 import firebase_info.com.realmfirestore.data.model.realm.User
 import firebase_info.com.realmfirestore.mvp.MvpView
 
-/**
- * Created by konstantinkochetov on 10.03.18.
- */
 class MainContract {
     interface View : MvpView {
         fun initializeViews()
