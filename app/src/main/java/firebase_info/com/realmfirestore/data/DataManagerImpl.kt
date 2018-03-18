@@ -163,7 +163,7 @@ open class DataManagerImpl @Inject constructor(
         val user = User(
             UUID.randomUUID().toString()
         )
-        user.social = socialList
+        user.socials = socialList
         return user
     }
 
