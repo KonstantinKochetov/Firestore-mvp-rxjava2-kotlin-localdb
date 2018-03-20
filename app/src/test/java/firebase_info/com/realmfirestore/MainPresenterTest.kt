@@ -33,7 +33,7 @@ class MainPresenterTest {
     }
 
     @Test
-    fun testCreateNewConversation() {
+    fun testAddUser() {
         whenever(data.addUser(any())).thenReturn(disposable)
 
         val captor = argumentCaptor<AppCallback<User>>()
