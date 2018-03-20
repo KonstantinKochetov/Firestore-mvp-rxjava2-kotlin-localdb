@@ -37,8 +37,8 @@ class MainActivity : BaseActivity(), MainContract.View {
 
     override fun initializeViews() {
         addUserButton.setOnClickListener({ presenter.addUser() })
-        getUserFromDbButton.setOnClickListener({ presenter.getUserFromDb() })
-        getUserListFromDbButton.setOnClickListener({ presenter.getUserListFromDb() })
+        getUserFromDbButton.setOnClickListener({ presenter.getUserFromDatabase() })
+        getUserListFromDbButton.setOnClickListener({ presenter.getUserListFromDatabase() })
         getSyncUsersQueryButton.setOnClickListener({ presenter.syncUsersWithQuery() })
         getSyncUsersListenerButton.setOnClickListener({ presenter.syncUsersWithListener() })
         deleteButton.setOnClickListener({ presenter.deleteAll() })

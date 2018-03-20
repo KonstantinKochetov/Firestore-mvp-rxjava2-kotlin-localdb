@@ -17,8 +17,8 @@ class MainContract {
     interface Presenter {
         fun initializeViews()
         fun addUser()
-        fun getUserFromDb()
-        fun getUserListFromDb()
+        fun getUserFromDatabase()
+        fun getUserListFromDatabase()
         fun syncUsersWithQuery()
         fun syncUsersWithListener()
         fun deleteAll()

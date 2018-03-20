@@ -10,11 +10,11 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-open class MainPresenter @Inject constructor(private val dataManager: DataManagerImpl) :
+open class MainPresenter @Inject constructor(
+    private val dataManager: DataManagerImpl,
+    private val compositeDisposable: CompositeDisposable) :
     BasePresenter<MainContract.View>(),
     MainContract.Presenter {
-
-    private var compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     override fun initializeViews() {
         mvpView?.initializeViews()
@@ -26,7 +26,6 @@ open class MainPresenter @Inject constructor(private val dataManager: DataManage
                 override fun onSuccess(response: User) {
                     mvpView?.showMessage(R.string.s_user_added)
                     mvpView?.displayUser(response)
-
                 }
 
                 override fun onFailure(message: String?, e: Throwable) {
@@ -36,7 +35,7 @@ open class MainPresenter @Inject constructor(private val dataManager: DataManage
         )
     }
 
-    override fun getUserFromDb() {
+    override fun getUserFromDatabase() {
         compositeDisposable.add(
             dataManager.getUserFromDatabase(object : AppCallback<User> {
                 override fun onSuccess(response: User) {
@@ -51,7 +50,7 @@ open class MainPresenter @Inject constructor(private val dataManager: DataManage
         )
     }
 
-    override fun getUserListFromDb() {
+    override fun getUserListFromDatabase() {
         compositeDisposable.add(
             dataManager.getUserListFromDatabase(object : AppCallback<List<User>> {
                 override fun onSuccess(response: List<User>) {

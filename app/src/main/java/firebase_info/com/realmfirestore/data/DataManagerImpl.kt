@@ -17,6 +17,7 @@ open class DataManagerImpl @Inject constructor(
     private val apiHelper: ApiHelperImpl,
     private val dbHelperImpl: DbHelperImpl
 ) : DataManager {
+
     override fun addUser(handler: AppCallback<User>): Disposable {
         return apiHelper.uploadUser(
             createTestUserWithSocialList()
