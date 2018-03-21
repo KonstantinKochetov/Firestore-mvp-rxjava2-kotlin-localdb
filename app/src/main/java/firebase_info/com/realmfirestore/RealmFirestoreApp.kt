@@ -4,9 +4,9 @@ import android.app.Application
 import android.content.Context
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
-import firebase_info.com.realmfirestore.dagger.components.AppComponent
-import firebase_info.com.realmfirestore.dagger.components.DaggerAppComponent
-import firebase_info.com.realmfirestore.dagger.modules.ContextModule
+import firebase_info.com.realmfirestore.di.components.AppComponent
+import firebase_info.com.realmfirestore.di.components.DaggerAppComponent
+import firebase_info.com.realmfirestore.di.modules.ContextModule
 import io.realm.Realm
 import javax.inject.Inject
 import com.google.firebase.firestore.FirebaseFirestoreSettings

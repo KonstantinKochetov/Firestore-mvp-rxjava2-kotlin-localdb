@@ -2,7 +2,7 @@ package firebase_info.com.realmfirestore.ui.main
 
 import android.support.annotation.StringRes
 import firebase_info.com.realmfirestore.data.model.realm.User
-import firebase_info.com.realmfirestore.mvp.MvpView
+import firebase_info.com.realmfirestore.ui.base.MvpView
 
 class MainContract {
     interface View : MvpView {

@@ -1,17 +1,16 @@
-package firebase_info.com.realmfirestore.dagger.components
+package firebase_info.com.realmfirestore.di.components
 
 import dagger.Component
 import firebase_info.com.realmfirestore.RealmFirestoreApp
-import firebase_info.com.realmfirestore.base.BaseActivity
-import firebase_info.com.realmfirestore.dagger.modules.ContextModule
-import firebase_info.com.realmfirestore.dagger.modules.FirebaseModule
-import firebase_info.com.realmfirestore.dagger.modules.RealmHelperModule
-import firebase_info.com.realmfirestore.dagger.modules.RxModule
+import firebase_info.com.realmfirestore.ui.base.BaseActivity
+import firebase_info.com.realmfirestore.di.modules.ContextModule
+import firebase_info.com.realmfirestore.di.modules.FirebaseModule
+import firebase_info.com.realmfirestore.di.modules.RealmHelperModule
+import firebase_info.com.realmfirestore.di.modules.RxModule
 import firebase_info.com.realmfirestore.data.DataManagerImpl
 import firebase_info.com.realmfirestore.data.local.DbHelperImpl
 import firebase_info.com.realmfirestore.data.network.ApiHelperImpl
 import firebase_info.com.realmfirestore.ui.main.MainActivity
-import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Singleton
 
 /**

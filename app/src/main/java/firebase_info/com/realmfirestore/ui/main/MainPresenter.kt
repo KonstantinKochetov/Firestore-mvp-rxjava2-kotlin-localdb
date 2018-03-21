@@ -1,7 +1,7 @@
 package firebase_info.com.realmfirestore.ui.main
 
 import firebase_info.com.realmfirestore.R
-import firebase_info.com.realmfirestore.base.BasePresenter
+import firebase_info.com.realmfirestore.ui.base.BasePresenter
 import firebase_info.com.realmfirestore.data.AppCallback
 import firebase_info.com.realmfirestore.data.DataManagerImpl
 import firebase_info.com.realmfirestore.data.model.realm.User

@@ -1,4 +1,4 @@
-package firebase_info.com.realmfirestore.mvp
+package firebase_info.com.realmfirestore.ui.base
 
 interface Presenter<V : MvpView> {
 

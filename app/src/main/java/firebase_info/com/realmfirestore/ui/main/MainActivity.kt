@@ -6,7 +6,7 @@ import android.util.Log
 import android.widget.TextView
 import firebase_info.com.realmfirestore.R
 import firebase_info.com.realmfirestore.RealmFirestoreApp
-import firebase_info.com.realmfirestore.base.BaseActivity
+import firebase_info.com.realmfirestore.ui.base.BaseActivity
 import firebase_info.com.realmfirestore.data.model.realm.User
 import kotterknife.bindView
 import org.jetbrains.anko.toast

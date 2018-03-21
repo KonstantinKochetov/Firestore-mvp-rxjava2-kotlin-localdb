@@ -1,7 +1,6 @@
-package firebase_info.com.realmfirestore.dagger.modules
+package firebase_info.com.realmfirestore.di.modules
 
 import android.content.Context
-import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides

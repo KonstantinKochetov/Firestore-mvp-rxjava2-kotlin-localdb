@@ -1,10 +1,10 @@
-package firebase_info.com.realmfirestore.base
+package firebase_info.com.realmfirestore.ui.base
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import firebase_info.com.realmfirestore.mvp.MvpView
 
-abstract class BaseActivity : AppCompatActivity(), MvpView {
+abstract class BaseActivity : AppCompatActivity(),
+    MvpView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

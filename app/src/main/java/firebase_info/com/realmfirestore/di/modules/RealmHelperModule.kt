@@ -1,4 +1,4 @@
-package firebase_info.com.realmfirestore.dagger.modules
+package firebase_info.com.realmfirestore.di.modules
 
 import dagger.Module
 import dagger.Provides

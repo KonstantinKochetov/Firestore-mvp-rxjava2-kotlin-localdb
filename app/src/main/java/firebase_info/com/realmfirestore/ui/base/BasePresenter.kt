@@ -1,7 +1,5 @@
-package firebase_info.com.realmfirestore.base
+package firebase_info.com.realmfirestore.ui.base
 
-import firebase_info.com.realmfirestore.mvp.MvpView
-import firebase_info.com.realmfirestore.mvp.Presenter
 import javax.inject.Inject
 
 open class BasePresenter<T : MvpView> @Inject constructor():

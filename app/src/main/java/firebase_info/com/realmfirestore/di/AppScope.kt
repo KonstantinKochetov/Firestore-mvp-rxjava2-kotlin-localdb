@@ -1,4 +1,4 @@
-package firebase_info.com.realmfirestore.dagger
+package firebase_info.com.realmfirestore.di
 
 import javax.inject.Qualifier
 

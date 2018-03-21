@@ -1,8 +1,6 @@
-package firebase_info.com.realmfirestore.dagger.modules
+package firebase_info.com.realmfirestore.di.modules
 
 import android.content.Context
-import android.view.Display
-import android.view.WindowManager
 import dagger.Module
 import dagger.Provides
 import firebase_info.com.realmfirestore.RealmFirestoreApp
