@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">RealmFirestore</string>
+    <string name="app_name">FirestoreMVP</string>
 
     <!--Buttons-->
-    <string name="default_user_title">New User</string>
+    <string name="default_user_title">Новый пользователь</string>
     <string name="s_generic_text">ТЕКСТ</string>
     <string name="s_add_user_server_and_db">Доб. пользователя на сервер и в БД</string>
     <string name="s_get_user_db">Запросить пользователя из БД</string>
