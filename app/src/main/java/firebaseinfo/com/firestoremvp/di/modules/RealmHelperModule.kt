@@ -2,7 +2,6 @@ package firebaseinfo.com.firestoremvp.di.modules
 
 import dagger.Module
 import dagger.Provides
-import firebaseinfo.com.firestoremvp.data.local.AppRealmModule
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import javax.inject.Singleton
@@ -20,7 +19,7 @@ class RealmHelperModule {
     @Singleton
     fun providesRealmConfiguration(): RealmConfiguration {
             return RealmConfiguration.Builder()
-                .modules(AppRealmModule())
+                .modules(AppModule())
                 .name("realmfirestore.realm")
                 .schemaVersion(1)
                 .build()

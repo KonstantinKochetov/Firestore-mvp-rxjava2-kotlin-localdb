@@ -1,4 +1,4 @@
-package firebaseinfo.com.firestoremvp.data.local
+package firebaseinfo.com.firestoremvp.di.modules
 
 import firebaseinfo.com.firestoremvp.data.model.realm.RealmUser
 import firebaseinfo.com.firestoremvp.data.model.realm.Social
@@ -8,4 +8,4 @@ import io.realm.annotations.RealmModule
     classes = [(RealmUser::class),
         (Social::class)]
 )
-class AppRealmModule
+class AppModule
