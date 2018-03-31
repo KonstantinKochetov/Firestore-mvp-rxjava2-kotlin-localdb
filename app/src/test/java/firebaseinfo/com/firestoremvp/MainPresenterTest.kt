@@ -3,7 +3,7 @@ package firebaseinfo.com.firestoremvp
 import com.nhaarman.mockito_kotlin.*
 import firebaseinfo.com.firestoremvp.data.AppCallback
 import firebaseinfo.com.firestoremvp.data.DataManagerImpl
-import firebaseinfo.com.firestoremvp.data.model.realm.User
+import firebaseinfo.com.firestoremvp.data.model.firestore.User
 import firebaseinfo.com.firestoremvp.ui.main.MainContract
 import firebaseinfo.com.firestoremvp.ui.main.MainPresenter
 import io.reactivex.disposables.CompositeDisposable
@@ -14,7 +14,7 @@ import org.junit.Test
 
 class MainPresenterTest {
 
-    companion object {
+    companion object {yy
         val testMessage = "testMessage"
     }
 

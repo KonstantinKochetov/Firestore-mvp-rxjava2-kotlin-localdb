@@ -8,9 +8,6 @@ import javax.inject.Singleton
 @Module
 class RxModule {
 
-    /**
-     * Allow the application context to be injected but require that it be annotated with [ ] to explicitly differentiate it from an activity context.
-     */
     @Provides
     @Singleton
     fun provideCompositeDisposable(): CompositeDisposable {

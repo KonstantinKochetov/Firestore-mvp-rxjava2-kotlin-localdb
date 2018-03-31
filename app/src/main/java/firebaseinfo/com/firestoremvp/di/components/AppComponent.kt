@@ -23,10 +23,4 @@ interface AppComponent {
 
     fun inject(activity: BaseActivity)
 
-    var dataSourceImpl: DataManagerImpl
-
-    var apiHelperImpl: ApiHelperImpl
-
-    var dbHelperImpl: DbHelperImpl
-
 }

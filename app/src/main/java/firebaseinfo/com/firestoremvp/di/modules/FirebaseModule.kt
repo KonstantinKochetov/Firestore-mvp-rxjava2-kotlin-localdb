@@ -12,7 +12,6 @@ class FirebaseModule {
     @Provides
     @Singleton
     fun providesFirestore(context: Context): FirebaseFirestore {
-        // Set Up Firebase
         return FirebaseFirestore.getInstance()
     }
 
