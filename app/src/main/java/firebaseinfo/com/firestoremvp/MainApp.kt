@@ -38,7 +38,7 @@ class MainApp : Application() {
         // Set Up Firebase
         FirebaseApp.initializeApp(context)
         firestore.firestoreSettings = FirebaseFirestoreSettings.Builder()
-            .setPersistenceEnabled(true)
+            .setPersistenceEnabled(false)
             .build()
 
         // Set Up Realm

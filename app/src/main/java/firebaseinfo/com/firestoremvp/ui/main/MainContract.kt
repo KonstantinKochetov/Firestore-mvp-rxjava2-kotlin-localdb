@@ -1,7 +1,7 @@
 package firebaseinfo.com.firestoremvp.ui.main
 
 import android.support.annotation.StringRes
-import firebaseinfo.com.firestoremvp.data.model.realm.User
+import firebaseinfo.com.firestoremvp.data.model.firestore.User
 import firebaseinfo.com.firestoremvp.ui.base.MvpView
 
 class MainContract {

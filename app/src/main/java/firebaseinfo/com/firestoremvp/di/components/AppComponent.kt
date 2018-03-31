@@ -13,10 +13,6 @@ import firebaseinfo.com.firestoremvp.data.network.ApiHelperImpl
 import firebaseinfo.com.firestoremvp.ui.main.MainActivity
 import javax.inject.Singleton
 
-/**
- * Created by frs on 16.04.17.
- * Provides all Singletons used by the App
- */
 @Singleton
 @Component(modules = [(ContextModule::class), (RxModule::class), (RealmHelperModule::class), (FirebaseModule::class)])
 interface AppComponent {

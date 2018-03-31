@@ -1,7 +1,7 @@
 package firebaseinfo.com.firestoremvp.data.local
 
+import firebaseinfo.com.firestoremvp.data.model.firestore.User
 import firebaseinfo.com.firestoremvp.data.model.realm.RealmUser
-import firebaseinfo.com.firestoremvp.data.model.realm.User
 import io.reactivex.Flowable
 import io.realm.Realm
 import javax.inject.Inject

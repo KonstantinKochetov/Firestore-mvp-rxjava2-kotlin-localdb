@@ -1,8 +1,8 @@
 package firebaseinfo.com.firestoremvp.data
 
 import firebaseinfo.com.firestoremvp.data.local.DbHelperImpl
-import firebaseinfo.com.firestoremvp.data.model.realm.Social
-import firebaseinfo.com.firestoremvp.data.model.realm.User
+import firebaseinfo.com.firestoremvp.data.model.firestore.Social
+import firebaseinfo.com.firestoremvp.data.model.firestore.User
 import firebaseinfo.com.firestoremvp.data.network.ApiHelperImpl
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable

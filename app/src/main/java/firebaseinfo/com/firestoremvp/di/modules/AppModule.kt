@@ -1,7 +1,7 @@
 package firebaseinfo.com.firestoremvp.di.modules
 
+import firebaseinfo.com.firestoremvp.data.model.firestore.Social
 import firebaseinfo.com.firestoremvp.data.model.realm.RealmUser
-import firebaseinfo.com.firestoremvp.data.model.realm.Social
 import io.realm.annotations.RealmModule
 
 @RealmModule(

@@ -1,6 +1,6 @@
 package firebaseinfo.com.firestoremvp.data
 
-import firebaseinfo.com.firestoremvp.data.model.realm.User
+import firebaseinfo.com.firestoremvp.data.model.firestore.User
 import io.reactivex.disposables.Disposable
 
 interface DataManager {

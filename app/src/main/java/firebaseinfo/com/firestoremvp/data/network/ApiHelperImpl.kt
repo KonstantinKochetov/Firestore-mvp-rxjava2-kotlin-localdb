@@ -3,7 +3,7 @@ package firebaseinfo.com.firestoremvp.data.network
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
-import firebaseinfo.com.firestoremvp.data.model.realm.User
+import firebaseinfo.com.firestoremvp.data.model.firestore.User
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.FlowableEmitter

@@ -1,5 +1,7 @@
 package firebaseinfo.com.firestoremvp.data.model.realm
 
+import firebaseinfo.com.firestoremvp.data.model.firestore.Social
+import firebaseinfo.com.firestoremvp.data.model.firestore.User
 import io.realm.RealmList
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey

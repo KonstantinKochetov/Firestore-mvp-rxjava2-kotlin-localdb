@@ -101,7 +101,7 @@ dependencies {
     implementation 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT'
 
     // firebase
-    compile "com.google.firebase:firebase-firestore:$rootProject.ext.firestoreVersion"
+    implementation "com.google.firebase:firebase-firestore:$rootProject.ext.firestoreVersion"
 
 
 }

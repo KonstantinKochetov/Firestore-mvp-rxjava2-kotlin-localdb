@@ -1,10 +1,10 @@
 package firebaseinfo.com.firestoremvp.ui.main
 
 import firebaseinfo.com.firestoremvp.R
-import firebaseinfo.com.firestoremvp.ui.base.BasePresenter
 import firebaseinfo.com.firestoremvp.data.AppCallback
 import firebaseinfo.com.firestoremvp.data.DataManagerImpl
-import firebaseinfo.com.firestoremvp.data.model.realm.User
+import firebaseinfo.com.firestoremvp.data.model.firestore.User
+import firebaseinfo.com.firestoremvp.ui.base.BasePresenter
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 import javax.inject.Singleton

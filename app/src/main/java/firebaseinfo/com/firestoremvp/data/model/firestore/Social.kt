@@ -1,4 +1,4 @@
-package firebaseinfo.com.firestoremvp.data.model.realm
+package firebaseinfo.com.firestoremvp.data.model.firestore
 
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
