@@ -15,7 +15,7 @@ import javax.inject.Singleton
 @Singleton
 open class DataManagerImpl @Inject constructor(
     private val apiHelper: ApiHelperImpl,
-    private val dbHelperImpl: DbHelperImpl
+    private val dbHelper: DbHelperImpl
 ) : DataManager {
 
     override fun addUser(handler: AppCallback<User>): Disposable {
@@ -30,7 +30,7 @@ open class DataManagerImpl @Inject constructor(
 
                 override fun onNext(t: User?) {
                     handler.onSuccess(t as User)
-                    dbHelperImpl.insertOrUpdateUser(t)
+                    dbHelper.insertOrUpdateUser(t)
                 }
 
                 override fun onError(e: Throwable?) {
@@ -43,7 +43,7 @@ open class DataManagerImpl @Inject constructor(
     }
 
     override fun getUserFromDatabase(handler: AppCallback<User>): Disposable {
-        return dbHelperImpl.getUserFlowable()
+        return dbHelper.getUserFlowable()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : DisposableSubscriber<User>() {
                 override fun onComplete() {
@@ -64,7 +64,7 @@ open class DataManagerImpl @Inject constructor(
     }
 
     override fun getUserListFromDatabase(handler: AppCallback<List<User>>): Disposable {
-        return dbHelperImpl.getUserListFlowable()
+        return dbHelper.getUserListFlowable()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : DisposableSubscriber<List<User>>() {
                 override fun onComplete() {
@@ -94,7 +94,7 @@ open class DataManagerImpl @Inject constructor(
 
                 override fun onNext(t: List<User>?) {
                     handler.onSuccess(t as List<User>)
-                    dbHelperImpl.syncUsersWithDatabase(t)
+                    dbHelper.syncUsersWithDatabase(t)
                 }
 
                 override fun onError(e: Throwable?) {
@@ -118,7 +118,7 @@ open class DataManagerImpl @Inject constructor(
 
                 override fun onNext(t: List<User>?) {
                     handler.onSuccess(t as List<User>)
-                    dbHelperImpl.syncUsersWithDatabase(t)
+                    dbHelper.syncUsersWithDatabase(t)
                 }
 
                 override fun onError(e: Throwable?) {
@@ -135,7 +135,7 @@ open class DataManagerImpl @Inject constructor(
             .subscribeWith(object : DisposableSubscriber<String>() {
                 override fun onComplete() {
                     handler.onSuccess("")
-                    dbHelperImpl.deleteAllFromDatabase()
+                    dbHelper.deleteAllFromDatabase()
                 }
 
                 override fun onNext(t: String?) {

@@ -9,6 +9,7 @@ import javax.inject.Singleton
 
 @Singleton
 open class DbHelperImpl @Inject constructor(val realm: Realm) : DbHelper {
+
     override fun insertOrUpdateUser(user: User) {
         realm.executeTransaction {
             realm.copyToRealmOrUpdate(user.transformForRealm())

@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.support.annotation.StringRes
 import android.util.Log
 import android.widget.TextView
-import firebaseinfo.com.firestoremvp.MainApp
 import firebaseinfo.com.firestoremvp.R
-import firebaseinfo.com.firestoremvp.data.model.firestore.User
+import firebaseinfo.com.firestoremvp.MainApp
+import firebaseinfo.com.firestoremvp.data.model.firestore.*
 import firebaseinfo.com.firestoremvp.ui.base.BaseActivity
 import kotterknife.bindView
 import org.jetbrains.anko.toast
@@ -84,5 +84,4 @@ class MainActivity : BaseActivity(), MainContract.View {
         super.onDestroy()
         presenter.detachView()
     }
-    
 }
