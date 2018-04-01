@@ -6,7 +6,7 @@
 
 ## Структура приложения
 
-<img src="./docs/image.png" height="534" width="300"/>
+<img src="./docs/image.png"/>
 
 ## Туториал по приложению доступен на сайте [firebase-info.com][firebaseinfo]
 
