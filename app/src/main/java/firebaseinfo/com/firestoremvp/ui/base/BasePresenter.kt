@@ -3,7 +3,7 @@ package firebaseinfo.com.firestoremvp.ui.base
 import javax.inject.Inject
 
 open class BasePresenter<T : MvpView> @Inject constructor():
-    Presenter<T> {
+    MvpPresenter<T> {
 
     var mvpView: T? = null
         private set
@@ -24,5 +24,5 @@ open class BasePresenter<T : MvpView> @Inject constructor():
     }
 
     class MvpViewNotAttachedException :
-        RuntimeException("Please call Presenter.attachView(MvpView) before" + " requesting data to the Presenter")
+        RuntimeException("Please call MvpPresenter.attachView(MvpView) before" + " requesting data to the MvpPresenter")
 }

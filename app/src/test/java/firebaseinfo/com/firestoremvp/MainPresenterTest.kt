@@ -14,7 +14,7 @@ import org.junit.Test
 
 class MainPresenterTest {
 
-    companion object {yy
+    companion object {
         val testMessage = "testMessage"
     }
 
